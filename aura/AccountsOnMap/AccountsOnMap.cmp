@@ -1,0 +1,62 @@
+<aura:component implements="force:appHostable" controller="AccountsOnMapController">
+    
+    <aura:attribute name="width" type="String" default="100%" />
+    <aura:attribute name="height" type="String" default="100%" />
+    <aura:attribute name="units" type="String" default="km" />
+    <aura:attribute name="radius" type="Integer" default="10" />
+    
+    <ltng:require scripts="{!$Resource.leaflet+'/leaflet.js, '+$Resource.jQuery_2_2_4}"
+                  styles="{!$Resource.leaflet+'/leaflet.css,'
+                          +$Resource.SLDS100+'/assets/styles/salesforce-lightning-design-system-ltng.css'}"
+                  afterScriptsLoaded="{!c.jsLoaded}" />
+    
+    <div class="slds" style="{!'width:'+v.width+';'}">
+        
+        <fieldset class="slds-form--compound">
+            <legend class="slds-form-element__label">Account Geo-Search</legend>
+            <div class="form-element__group">
+                <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size--1-of-3">
+                        <label class="slds-form-element__label" for="select-01">Radius (from HQ)</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputSelect class="slds-select" value="{!v.radius}">
+                                    <ui:inputSelectOption text="5" />
+                                    <ui:inputSelectOption text="10" />
+                                    <ui:inputSelectOption text="50" />
+                                    <ui:inputSelectOption text="100" />
+                                    <ui:inputSelectOption text="500" />
+                                    <ui:inputSelectOption text="1000" />
+                                    <ui:inputSelectOption text="5000" />
+                                    <ui:inputSelectOption text="10000" />
+                                    <ui:inputSelectOption text="50000" />
+                                </ui:inputSelect>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slds-form-element slds-size--1-of-3">
+                        <label class="slds-form-element__label">Unity</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputSelect class="slds-select" value="{!v.units}">
+                                    <ui:inputSelectOption text="km" />
+                                    <ui:inputSelectOption text="mi" />
+                                </ui:inputSelect>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slds-form-element slds-size--1-of-3">
+                        <label >&nbsp;</label>
+                        <div class="slds-form-element__control">
+                        	<button class="slds-button slds-button--brand" onclick="{!c.reloadAccounts}">Refresh</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="map" id="{!globalId + 'map'}" style="{!'width:'+v.width+'; height:'+v.height+';'}"></div>
+    </div>
+    
+</aura:component>
