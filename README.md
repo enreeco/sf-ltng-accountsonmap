@@ -2,6 +2,6 @@
 
 This is a sample component to show Lightning working with location aware applications.
 
-Blog url: http://blog.enree.co/2016/08/salesforce-lightning-location-aware-fun.html
+Blog url: http://blog.enree.co/2016/08/salesforce-lightning-geolocation-fun.html
 
 Author: Enrico Murru @enreeco
